@@ -1,15 +1,19 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import ContactContext from '../../context/contact/contactContext';
 import ContactItem from './ContactItem';
 
 const Contacts = () => {
   const contactContext = useContext(ContactContext);
 
-  const { contacts } = contactContext;
+  const { contacts, filtered } = contactContext;
+
+  const contactList = useMemo(() => {
+    return filtered || contacts;
+  }, [filtered, contacts]);
 
   return (
     <>
-      {contacts.map(contact => (
+      {contactList.map(contact => (
         <ContactItem key={contact.id} contact={contact} />
       ))}
     </>

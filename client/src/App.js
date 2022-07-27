@@ -10,14 +10,13 @@ function App() {
   return (
     <ContactState>
       <Router>
-        <div className="App">
-          <Navbar />
+        <Navbar />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
         </div>
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
       </Router>
     </ContactState>
   );
