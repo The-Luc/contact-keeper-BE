@@ -26,8 +26,9 @@ const contactReducer = (state, action) => {
     case UPDATE_CONTACT:
       return {
         ...state,
+        current: null,
         contacts: state.contacts.map(contact =>
-          contact.id === action.payload._id ? action.payload : contact
+          contact._id === action.payload._id ? action.payload : contact
         ),
       };
     case DELETE_CONTACT:
