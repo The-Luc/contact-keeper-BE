@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import ContactContext from '../../context/contact/contactContext';
 
 const Navbar = ({ title, icon }) => {
   const { isAuthenticated, logout, user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { clearContacts } = useContext(ContactContext);
 
   const onLogout = () => {
     logout();
-    navigate('/login');
+    clearContacts();
   };
 
   const authLinks = (

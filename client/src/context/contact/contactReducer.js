@@ -6,10 +6,18 @@ import {
   UPDATE_CONTACT,
   FILTER_CONTACT,
   CLEAR_FILTER,
+  CONTACT_ERROR,
+  GET_CONTACTS,
+  CLEAR_CONTACTS,
 } from '../types';
 
 const contactReducer = (state, action) => {
   switch (action.type) {
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload,
+      };
     case ADD_CONTACT:
       return {
         ...state,
@@ -27,6 +35,15 @@ const contactReducer = (state, action) => {
         ...state,
         contacts: state.contacts.filter(contact => contact.id !== action.payload),
       };
+    case CLEAR_CONTACTS:
+      return {
+        ...state,
+        contacts: [],
+        filtered: null,
+        current: null,
+        error: null,
+      };
+
     case SET_CURRENT:
       return {
         ...state,
@@ -50,6 +67,8 @@ const contactReducer = (state, action) => {
         ...state,
         filtered: null,
       };
+    case CONTACT_ERROR:
+      return { ...state, error: action.payload };
     default:
       return state;
   }

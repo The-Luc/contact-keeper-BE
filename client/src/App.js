@@ -10,6 +10,7 @@ import Login from './components/auth/Login';
 import ContactState from './context/contact/ContactState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 function App() {
   return (
@@ -21,7 +22,14 @@ function App() {
             <div className="container">
               <Alerts />
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route
+                  path="/"
+                  element={
+                    <PrivateRoute>
+                      <Home />
+                    </PrivateRoute>
+                  }
+                />
                 <Route path="/about" element={<About />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
